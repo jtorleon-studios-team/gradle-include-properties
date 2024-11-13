@@ -1,0 +1,46 @@
+plugins {
+  id 'java'
+  id 'maven-publish'
+  id 'java-gradle-plugin'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation gradleTestKit()
+  testImplementation platform('org.junit:junit-bom:5.9.1')
+  testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+  useJUnitPlatform()
+}
+
+gradlePlugin {
+  plugins {
+    simplePlugin {
+      id = plugin_identifier
+      implementationClass = plugin_entry
+    }
+  }
+}
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(java_version)
+  }
+}
+
+tasks.withType(JavaCompile).configureEach {
+  it.options.encoding = 'UTF-8'
+  it.options.release.set(java_version.toInteger())
+}
+
+afterEvaluate {
+  println "group: $group";
+  println "version: $version";
+  println "identifier: $plugin_identifier";
+  println "mainClass: $plugin_entry";
+}
