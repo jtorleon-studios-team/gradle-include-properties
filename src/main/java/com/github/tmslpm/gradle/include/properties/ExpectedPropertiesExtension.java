@@ -25,6 +25,7 @@ public abstract class ExpectedPropertiesExtension {
    */
   public ExpectedPropertiesExtension() {
     this.getExpected().convention(List.of());
+    this.getExpandToResources().convention(List.of());
   }
 
   /**
@@ -37,4 +38,12 @@ public abstract class ExpectedPropertiesExtension {
    */
   public abstract ListProperty<String> getExpected();
 
+  /**
+   * <p>
+   *   Expand all properties to specified resources files
+   * </p>
+   * @return a {@link ListProperty} of {@link String} objects
+   * representing the path of resources files
+   */
+  public abstract ListProperty<String> getExpandToResources();
 }

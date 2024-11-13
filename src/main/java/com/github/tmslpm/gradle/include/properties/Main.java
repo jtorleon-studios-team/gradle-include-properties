@@ -4,6 +4,7 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.logging.Logging;
+import org.gradle.api.tasks.AbstractCopyTask;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -54,6 +55,19 @@ public class Main implements Plugin<Object> {
     if (!ext.getExpected().get().isEmpty()) {
       ProjectPropertiesHelper.checkExpectedKey(project, ext.getExpected().get());
     }
+
+    if (!ext.getExpandToResources().get().isEmpty()) {
+      this.configureProcessResources(project, ext.getExpandToResources().get());
+    }
+  }
+
+  private void configureProcessResources(@NotNull Project project, List<String> expandTo) {
+    var ext = project.getExtensions().getByType(ExpectedPropertiesExtension.class);
+    project.getTasks().named("processResources", AbstractCopyTask.class)
+        .configure(v -> v.filesMatching(
+            expandTo,
+            act -> act.expand(project.getProperties())
+        ));
   }
 
 }
