@@ -45,6 +45,7 @@ gradlePlugin {
       displayName = 'Plugin Gradle Include Properties'
       description = 'Gradle plugin to easily include multiple property files into your build.'
       implementationClass = 'com.github.tmslpm.gradle.include.properties.Main'
+      tags = ['properties', 'include-properties']
     }
   }
 }

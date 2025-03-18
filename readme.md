@@ -3,16 +3,13 @@
 Gradle plugin to easily include multiple property files into your build.
 
 - License: MIT
+- Javadoc: https://jtorleon-studios-team.github.io/gradle-include-properties 
 
 ## Setup
-
-- clone the project
-- execute the task publishToMavenLocal
-- edit your "build.gradle" and add the plugin
-
+ 
 ```groovy
 plugins {
-  id 'gradle-include-properties' version '1.0.0'
+  id 'io.github.jtorleonstudiosteam.gradleincludeproperties' version '1.0.0'
 }
 
 // (optional) after evaluation, check if the keys exists
