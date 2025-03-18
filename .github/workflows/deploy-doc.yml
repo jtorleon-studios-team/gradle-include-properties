@@ -1,6 +1,13 @@
 name: Deploy Javadoc
 run-name: ${{ github.actor }} - deploy java doc to github page
 on: workflow_dispatch
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 jobs:
   deploy:
     environment:
