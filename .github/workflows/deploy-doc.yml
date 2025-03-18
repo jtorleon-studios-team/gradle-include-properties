@@ -22,7 +22,9 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Build Javadoc
-        run: ./gradlew javadoc
+        run: |
+          chmod +x ./gradlew
+          ./gradlew javadoc
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
