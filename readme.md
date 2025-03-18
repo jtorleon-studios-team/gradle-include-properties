@@ -1,5 +1,7 @@
 # Gradle Plugin : Include Properties
 
+Gradle plugin to easily include multiple property files into your build.
+
 - License: MIT
 
 ## Setup
