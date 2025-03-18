@@ -9,8 +9,8 @@
 [versions] # Section Versions ~ Declares version identifiers.
 javaToolchainVersion = "17"               # https://github.com/openjdk
 javaTargetCompatibility = "17"            #
-jetbrains_annotations_version = "26.0.1"  # https://github.com/JetBrains/java-annotations
-junit_version = "5.11.4"                  # https://github.com/junit-team/junit5
+jetbrains_annotations_version = "26.0.2"  # https://github.com/JetBrains/java-annotations
+junit_version = "5.12.1"                  # https://github.com/junit-team/junit5
 mockito_version = "5.+"                   # https://github.com/mockito/mockito
 cadixdev_licenser_version = "0.6.1"       # https://github.com/CadixDev/licenser
 gradle_plugin_publish_version = '1.3.1'           # https://plugins.gradle.org/plugin/com.gradle.plugin-publish
