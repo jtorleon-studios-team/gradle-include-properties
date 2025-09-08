@@ -9,7 +9,7 @@
 [versions] # Section Versions ~ Declares version identifiers.
 javaToolchainVersion = "17"               # https://github.com/openjdk
 javaTargetCompatibility = "17"            #
-jetbrains_annotations_version = "26.0.2"  # https://github.com/JetBrains/java-annotations
+jetbrains_annotations_version = "26.0.2-1"  # https://github.com/JetBrains/java-annotations
 junit_version = "5.12.1"                  # https://github.com/junit-team/junit5
 mockito_version = "5.+"                   # https://github.com/mockito/mockito
 cadixdev_licenser_version = "0.6.1"       # https://github.com/CadixDev/licenser
