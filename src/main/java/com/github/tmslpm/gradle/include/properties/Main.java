@@ -31,6 +31,8 @@ public class Main implements Plugin<Object> {
   private void applyFrom(@NotNull Project project) {
     this.beforeEvaluateFrom(project);
     project.getExtensions().create(ExpectedPropertiesExtension.NAME, ExpectedPropertiesExtension.class);
+    project.getExtensions().create(ExpandPropertiesExtension.NAME, ExpandPropertiesExtension.class);
+
     project.afterEvaluate(this::applyAfterEvaluateFrom);
   }
 
@@ -51,23 +53,27 @@ public class Main implements Plugin<Object> {
   }
 
   private void applyAfterEvaluateFrom(@NotNull Project project) {
+   this.configureProcessResources(project);
+   this.checkExpectedKey(project);
+  }
+
+  private void checkExpectedKey(@NotNull Project project) {
     var ext = project.getExtensions().getByType(ExpectedPropertiesExtension.class);
     if (!ext.getExpected().get().isEmpty()) {
       ProjectPropertiesHelper.checkExpectedKey(project, ext.getExpected().get());
     }
-
-    if (!ext.getExpandToResources().get().isEmpty()) {
-      this.configureProcessResources(project, ext.getExpandToResources().get());
-    }
   }
 
-  private void configureProcessResources(@NotNull Project project, List<String> expandTo) {
-    var ext = project.getExtensions().getByType(ExpectedPropertiesExtension.class);
-    project.getTasks().named("processResources", AbstractCopyTask.class)
-        .configure(v -> v.filesMatching(
-            expandTo,
-            act -> act.expand(project.getProperties())
-        ));
+  private void configureProcessResources(@NotNull Project project) {
+    var ext = project.getExtensions().getByType(ExpandPropertiesExtension.class);
+    if (!ext.getTo().get().isEmpty()) {
+      project.getTasks()
+          .named("processResources", AbstractCopyTask.class)
+          .configure(v -> v.filesMatching(
+              ext.getTo().get(),
+              act -> act.expand(project.getProperties())
+          ));
+    }
   }
 
 }
