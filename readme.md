@@ -1,45 +1,76 @@
 # Gradle Plugin : Include Properties
 
-- License: MIT
+The **Include Properties** plugin allows you to include external `.properties` files into your Gradle project,
+optionally overriding existing properties.
+
+- **License:** MIT
+- **Author:** JTorleon Studios Team
+- **Public Maven Repository:** https://jtorleon-studios-team-github-io.pages.dev/
+- **Public Github Repository:** https://github.com/jtorleon-studios-team/gradle-include-properties
+
+## Installation
+
+Add the public Maven repository in your `settings.gradle`:
+
+```groovy
+pluginManagement {
+  repositories {
+    maven {
+      url = 'https://jtorleon-studios-team-github-io.pages.dev/'
+    }
+  }
+}
+```
+
+Then apply the plugin in your `build.gradle`:
+
+```groovy
+plugin {
+  id 'gradle-include-properties' version '1.0.0'
+}
+```
 
 ## Setup
 
-- clone the project
-- execute the task publishToMavenLocal
-- edit your "build.gradle" and add the plugin
+### 1. Configure expected properties (optional)
 
 ```groovy
-plugins {
-  id 'gradle-include-properties' version '1.0.0'
-}
-
-// (optional) after evaluation, check if the keys exists
 expectedProperties {
   expected = [
     "my_key_1",
     "my_key_2",
-    "my_key_3" 
+    "my_key_3"
   ]
 }
 ```
 
-- edit your "gradle.properties"
-````properties
+This block can be used after project evaluation to verify that certain keys exist.
+
+### 2. Edit gradle.properties
+
+```properties
 org.gradle.jvmargs=-Xmx4G
 # etc...
-
 include.properties=extra.properties
 include.properties.override=true
-````
+```
 
-- create the file "extra.properties" to be included
-````properties
+- `include.properties` can be a single file, multiple files (comma-separated), or directories.
+- `include.properties.override` determines if properties in included files override existing ones.
+
+### 3. Create included file(s)
+
+`extra.properties`:
+
+```properties
 my_key_1=a
 my_key_2=b
 my_key_3=c
-````
+```
 
-````groovy
+### 4. Access properties in Gradle tasks
+
+```groovy
 task printProperties {
   doLast {
     println "my_key_1 <- ${project.findProperty('my_key_1')}"
@@ -47,10 +78,13 @@ task printProperties {
     println "my_key_3 <- ${project.findProperty('my_key_3')}"
   }
 }
-````
+```
 
-With multiple file
+### 5. Include multiple files or directories
+
 ````properties
 include.properties=file1.properties,../file2.properties,my-directory
 include.properties.override=true
 ````
+
+All properties from the listed files/directories will be loaded, optionally overriding existing values.

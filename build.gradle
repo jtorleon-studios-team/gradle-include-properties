@@ -23,7 +23,7 @@ gradlePlugin {
     simplePlugin {
       id = plugin_identifier
       implementationClass = plugin_entry
-    }gi
+    }
   }
 }
 
