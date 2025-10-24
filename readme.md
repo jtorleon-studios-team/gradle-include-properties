@@ -16,7 +16,7 @@ Add the public Maven repository in your `settings.gradle`:
 pluginManagement {
   repositories {
     maven {
-      url = 'https://jtorleon-studios-team-github-io.pages.dev/'
+      url = 'https://jtorleon-studios-team-github-io.pages.dev/maven'
     }
   }
 }
