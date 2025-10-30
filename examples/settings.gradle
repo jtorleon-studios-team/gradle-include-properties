@@ -1,0 +1,9 @@
+pluginManagement {
+  repositories {
+    mavenLocal()
+    maven { url = 'https://jtorleon-studios-team-github-io.pages.dev/maven' }
+    maven { url = 'https://maven.fabricmc.net/' }
+    mavenCentral()
+    gradlePluginPortal()
+  }
+}
