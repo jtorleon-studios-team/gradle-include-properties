@@ -44,3 +44,22 @@ afterEvaluate {
   println "identifier: $plugin_identifier";
   println "mainClass: $plugin_entry";
 }
+
+
+publishing {
+  publications {
+    pluginMaven(MavenPublication) {
+      artifactId = plugin_identifier
+    }
+  }
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/jtorleon-studios-team/$plugin_identifier")
+      credentials {
+        username = System.getenv("USERNAME")
+        password = System.getenv("TOKEN")
+      }
+    }
+  }
+}

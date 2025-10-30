@@ -1,4 +1,4 @@
-package com.github.tmslpm.gradle.include.properties;
+package com.github.jtorleonstudios.gradle.include.properties;
 
 import org.gradle.testkit.runner.BuildResult;
 import org.gradle.testkit.runner.BuildTask;

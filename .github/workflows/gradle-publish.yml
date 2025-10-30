@@ -1,0 +1,11 @@
+name: Auto Publish Maven
+run-name: ${{ github.actor }} - Auto Publish Maven
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  run:
+    uses: jtorleon-studios-team/.workflows/.github/workflows/auto-publish-maven.yml@main
+    secrets: inherit

@@ -1,4 +1,4 @@
-package com.github.tmslpm.gradle.include.properties;
+package com.github.jtorleonstudios.gradle.include.properties;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
